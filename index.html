@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan QR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #reader {
+      width: 100vw;
+      height: 100vh;
+    }
+    .hint {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div id="reader"></div>
+<div class="hint">Arahkan kamera ke QR</div>
+
+<script>
+  const scanner = new Html5Qrcode("reader");
+
+  scanner.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 300 },
+    (result) => {
+      window.location.href = result;
+    }
+  );
+</script>
+
+</body>
+</html>
